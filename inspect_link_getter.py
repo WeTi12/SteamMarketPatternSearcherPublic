@@ -5,7 +5,7 @@ import datetime
 import re
 from email.mime.text import MIMEText
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -36,10 +36,8 @@ if type(data2) == dict:
 #open browser
 options = Options() 
 options.add_argument("-headless")
-options.page_load_strategy = 'none'
-firefox_profile = webdriver.FirefoxProfile()
-firefox_profile.set_preference('permissions.default.image', 2)
-driver = webdriver.Firefox(firefox_profile=firefox_profile, options=options)
+options.page_load_strategy = 'eager'
+driver = webdriver.Firefox(options)
 
 for item in data2:
     #getting inspect links and prices
