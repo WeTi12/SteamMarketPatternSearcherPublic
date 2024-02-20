@@ -91,7 +91,7 @@ for item in data:
         input_to.send_keys(Keys.ENTER)
         #get pattern
         try:
-            details_div = WebDriverWait(driver, 1.2).until(EC.presence_of_element_located((By.CLASS_NAME, "item-props")))
+            details_div = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CLASS_NAME, "item-props")))
             pattern = details_div.text[11:16]
             pattern = re.sub("[^0-9]", "", pattern)
             del details_div
