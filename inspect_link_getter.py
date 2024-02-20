@@ -79,7 +79,7 @@ for item in data2:
         input_to.send_keys(Keys.ENTER)
         #get pattern
         try:
-            details_div = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CLASS_NAME, "item-props")))
+            details_div = WebDriverWait(driver, 1.2).until(EC.presence_of_element_located((By.CLASS_NAME, "item-props")))
             #details_div = driver.find_element(By.CLASS_NAME, "item-props")
             #print(details_div.text[55:60])
             pattern = details_div.text[11:16]
