@@ -56,5 +56,20 @@ python program.py 5
 ### Arguments
 - **minutes:** amount of minutes between each loop cycle.
 
+## Additional information
+If you plan to start the script on linux you must change line
+```py
+completed_process = subprocess.run(['python', script_name], check=True, text=True)
+```
+to
+```py
+completed_process = subprocess.run(['python3', script_name], check=True, text=True)
+```
+in **program.py** file
+
+Useful links for starting the script on AWS with ubuntu
+https://askubuntu.com/questions/870530/how-to-install-geckodriver-in-ubuntu
+https://stackoverflow.com/questions/72374955/failed-to-read-marionette-port-when-running-selenium-geckodriver-firefox-a
+
 ## Disclaimer
 This tool is intended for personal use and educational purposes only. Respect Steam's terms of service when using this script. The developers of this script are not responsible for any potential consequences of using this tool.
