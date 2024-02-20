@@ -67,11 +67,17 @@ completed_process = subprocess.run(['python3', script_name], check=True, text=Tr
 ```
 in **program.py** file
 
-Useful links for starting the script on AWS with ubuntu
+Useful links for starting the script on AWS EC2  instance with ubuntu
 
 https://askubuntu.com/questions/870530/how-to-install-geckodriver-in-ubuntu
 
 https://stackoverflow.com/questions/72374955/failed-to-read-marionette-port-when-running-selenium-geckodriver-firefox-a
+
+It is also usefull to install GNU Screen, in order to run the script in the background while not being connected to AWS instance
+```bash
+sudo apt install screen
+```
+https://linuxize.com/post/how-to-use-linux-screen/
 
 ## Disclaimer
 This tool is intended for personal use and educational purposes only. Respect Steam's terms of service when using this script. The developers of this script are not responsible for any potential consequences of using this tool.
