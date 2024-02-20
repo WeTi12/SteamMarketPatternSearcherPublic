@@ -6,7 +6,6 @@ import re
 from email.mime.text import MIMEText
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -35,9 +34,12 @@ if type(data2) == dict:
     data2 = [data2]
 
 #open browser
-options = Options() 
-options.add_argument("-headless")
-driver = webdriver.Firefox(options)
+#options = Options() 
+#options.add_argument("-headless")
+#driver = webdriver.Firefox(options)
+options = Options()
+options.add_argument('--headless=new')
+driver = webdriver.Chrome(options)
 
 for item in data2:
     #getting inspect links and prices
@@ -74,6 +76,7 @@ for item in data2:
         print("getting pattern of item " + item["link"][47:] + " " + link[66:a_index+1])
         input_to.clear()
         input_to.send_keys(link)
+        input_to.send_keys(Keys.ENTER)
         #get pattern
         try:
             details_div = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CLASS_NAME, "item-props")))
