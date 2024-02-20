@@ -82,8 +82,8 @@ for item in data:
     print("Scraping patterns")
     baseurl = "https://csfloat.com/checker"
     driver.get(baseurl)
+    input_to = driver.find_element(By.ID, "mat-input-1")
     for link in inspect_links:
-        input_to = driver.find_element(By.ID, "mat-input-1")
         a_index = link.find("A")
         print("getting pattern of item " + item["link"][47:] + " " + link[66:a_index+1])
         input_to.clear()
@@ -106,8 +106,6 @@ for item in data:
             pattern = ""
             patterns.append(pattern)
             del pattern
-        
-        driver.refresh()
 
     for i in range(0, len(inspect_links)):
         if patterns[i] in item["patterns"]:
