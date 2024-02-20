@@ -68,7 +68,9 @@ completed_process = subprocess.run(['python3', script_name], check=True, text=Tr
 in **program.py** file
 
 Useful links for starting the script on AWS with ubuntu
+
 https://askubuntu.com/questions/870530/how-to-install-geckodriver-in-ubuntu
+
 https://stackoverflow.com/questions/72374955/failed-to-read-marionette-port-when-running-selenium-geckodriver-firefox-a
 
 ## Disclaimer
