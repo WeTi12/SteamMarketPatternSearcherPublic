@@ -44,6 +44,10 @@ for item in data:
     baseurl = item["link"]
     driver.get(baseurl)
     btns = driver.find_elements(By.CLASS_NAME, "market_actionmenu_button")
+    inspect_links = None
+    listing_ids = None
+    prices = None
+    patterns = None
     inspect_links = []
     listing_ids = []
     prices = []
