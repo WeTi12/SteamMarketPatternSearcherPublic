@@ -8,7 +8,10 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
 
 def send_email(subject, body, sender, recipients, password):
     msg = MIMEText(body)
@@ -35,11 +38,7 @@ if type(data2) == dict:
 options = Options() 
 options.add_argument("-headless")
 driver = webdriver.Firefox(options)
-#driver = webdriver.Firefox()
 
-#chrome_options = Options()
-#chrome_options.add_argument("--headless")
-#driver = webdriver.Chrome(chrome_options)
 for item in data2:
     #getting inspect links and prices
     baseurl = item["link"]
@@ -69,26 +68,35 @@ for item in data2:
     print("Scraping patterns")
     baseurl = "https://csfloat.com/checker"
     driver.get(baseurl)
-    input_to = driver.find_element(By.ID, "mat-input-1")
     for link in inspect_links:
+        input_to = driver.find_element(By.ID, "mat-input-1")
         a_index = link.find("A")
         print("getting pattern of item " + item["link"][47:] + " " + link[66:a_index+1])
         input_to.clear()
         input_to.send_keys(link)
-        time.sleep(750/1000)
         #get pattern
-        html = driver.page_source
-        index = html.find("Paint Seed:")
-        index += 15
-        pattern = html[index:index+4].strip()
-        pattern = re.sub("[^0-9]", "", pattern)
-        if len(pattern) == 0:
-            print("Couldn't scrape item pattern, FloatDB error/slow internet issue")
-        else:
-            print(pattern)
-        patterns.append(pattern)
-        input_to.clear()
-        time.sleep(50/1000)
+        try:
+            details_div = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "item-props")))
+            #details_div = driver.find_element(By.CLASS_NAME, "item-props")
+            #print(details_div.text[55:60])
+            pattern = details_div.text[11:16]
+            pattern = re.sub("[^0-9]", "", pattern)
+            if len(pattern) == 0:
+                print("Couldn't scrape item pattern, FloatDB error/slow internet issue")
+            else:
+                print(pattern)
+            patterns.append(pattern)
+        except TimeoutException:
+            print("Loading took too much time!")
+            pattern = ""
+            patterns.append(pattern)
+        
+        driver.refresh()
+        #print(details_div.text)
+        #html = driver.page_source
+        #index = html.find("Paint Seed:")
+        #index += 15
+        #pattern = html[index:index+4].strip()
 
     for i in range(0, len(inspect_links)):
         if patterns[i] in item["patterns"]:
