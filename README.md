@@ -1,7 +1,7 @@
 # Steam Market Pattern Searcher
 
 ## About
-The Steam Market Pattern Searcher is a Python script designed to search for specified patterns of CS:GO items on the Steam Market. This tool aims to help users find items with specific patterns (e.g., skin patterns or rare decorations) more efficiently.
+The Steam Market Pattern Searcher is a Python script designed to search for specified patterns of CS2 items on the Steam Market. This tool aims to help users find items with specific patterns (e.g., skin patterns or rare decorations) more efficiently.
 
 ## Installation
 
