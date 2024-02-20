@@ -37,6 +37,7 @@ if type(data) == dict:
 options = Options() 
 options.add_argument("-headless")
 options.page_load_strategy = 'eager'
+options.set_preference("permissions.default.image", 2)
 driver = webdriver.Firefox(options)
 
 for item in data:
