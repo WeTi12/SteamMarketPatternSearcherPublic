@@ -34,12 +34,12 @@ if type(data2) == dict:
     data2 = [data2]
 
 #open browser
-#options = Options() 
-#options.add_argument("-headless")
-#driver = webdriver.Firefox(options)
-options = Options()
-options.add_argument('--headless=new')
-driver = webdriver.Chrome(options)
+options = Options() 
+options.add_argument("-headless")
+options.page_load_strategy = 'none'
+firefox_profile = webdriver.FirefoxProfile()
+firefox_profile.set_preference('permissions.default.image', 2)
+driver = webdriver.Firefox(firefox_profile=firefox_profile, options=options)
 
 for item in data2:
     #getting inspect links and prices
@@ -80,8 +80,6 @@ for item in data2:
         #get pattern
         try:
             details_div = WebDriverWait(driver, 1.2).until(EC.presence_of_element_located((By.CLASS_NAME, "item-props")))
-            #details_div = driver.find_element(By.CLASS_NAME, "item-props")
-            #print(details_div.text[55:60])
             pattern = details_div.text[11:16]
             pattern = re.sub("[^0-9]", "", pattern)
             if len(pattern) == 0:
@@ -95,11 +93,6 @@ for item in data2:
             patterns.append(pattern)
         
         driver.refresh()
-        #print(details_div.text)
-        #html = driver.page_source
-        #index = html.find("Paint Seed:")
-        #index += 15
-        #pattern = html[index:index+4].strip()
 
     for i in range(0, len(inspect_links)):
         if patterns[i] in item["patterns"]:
