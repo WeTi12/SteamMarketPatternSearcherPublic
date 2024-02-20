@@ -28,10 +28,10 @@ data = ""
 with open("item.txt") as f:
     data = f.read()
 
-data2 = json.loads(data)
+data = json.loads(data)
 
-if type(data2) == dict:
-    data2 = [data2]
+if type(data) == dict:
+    data = [data]
 
 #open browser
 options = Options() 
@@ -39,7 +39,7 @@ options.add_argument("-headless")
 options.page_load_strategy = 'eager'
 driver = webdriver.Firefox(options)
 
-for item in data2:
+for item in data:
     #getting inspect links and prices
     baseurl = item["link"]
     driver.get(baseurl)
@@ -56,6 +56,12 @@ for item in data2:
         popup = driver.find_element(By.CSS_SELECTOR, "#market_action_popup_itemactions > a")
         href = popup.get_attribute('href')
         inspect_links.append(href)
+        del href
+        del popup
+        del id_of_listing
+    
+    #release data from memory
+    del btns
 
     #getting prices
     print("Scraping prices")
@@ -63,6 +69,10 @@ for item in data2:
     for pri in pric:
         pr = pri.text
         prices.append(pr)
+        del pr
+
+    #release data from memory
+    del pric
 
     #getting patterns
     print("Scraping patterns")
@@ -80,15 +90,18 @@ for item in data2:
             details_div = WebDriverWait(driver, 1.2).until(EC.presence_of_element_located((By.CLASS_NAME, "item-props")))
             pattern = details_div.text[11:16]
             pattern = re.sub("[^0-9]", "", pattern)
+            del details_div
             if len(pattern) == 0:
                 print("Couldn't scrape item pattern, FloatDB error/slow internet issue")
             else:
                 print(pattern)
             patterns.append(pattern)
+            del pattern
         except TimeoutException:
             print("Loading took too much time!")
             pattern = ""
             patterns.append(pattern)
+            del pattern
         
         driver.refresh()
 
@@ -118,18 +131,19 @@ for item in data2:
             title = "Item found " + item["name"] + " " + datenow.strftime("%Y-%m-%d %H:%M:%S")
             send_email(title, message, email_data[0], email_data[2].split(","), email_data[1])
             print(patterns[i], prices[i], listing_ids[i], item["link"], inspect_links[i])
-            #remove item from list and file
+            #remove item or patternfrom list and file if found
             if len(item["patterns"]) > 1:
                 item["patterns"].remove(patterns[i])
                 f = open("item.txt", "w")
-                f.write(json.dumps(data2))
+                f.write(json.dumps(data))
                 f.close()
             else:
-                data2.remove(item)
+                data.remove(item)
                 f = open("item.txt", "w")
-                f.write(json.dumps(data2))
+                f.write(json.dumps(data))
                 f.close()
             print("Item removed")
+            
         
 #close browser
 driver.quit()
