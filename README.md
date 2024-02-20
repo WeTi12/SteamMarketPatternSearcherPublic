@@ -46,5 +46,15 @@ The **details.txt** file contains sensitive information and should be formatted 
 
 **Important:** Ensure that **details.txt** is stored securely and is not accessible to unauthorized users, as it contains sensitive information.
 
+## program.py
+**program.py** is the main loop of the script, use it to run the script after you made the **item.txt** and **details.txt** files
+To use the script, navigate to the project directory and run program.py with the required arguments: <minutes>
+
+```bash
+python program.py 5
+```
+### Arguments
+- **minutes:** amount of minutes between each loop cycle.
+
 ## Disclaimer
 This tool is intended for personal use and educational purposes only. Respect Steam's terms of service when using this script. The developers of this script are not responsible for any potential consequences of using this tool.
