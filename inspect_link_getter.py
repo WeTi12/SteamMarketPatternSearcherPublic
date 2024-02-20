@@ -75,10 +75,9 @@ for item in data2:
         print("getting pattern of item " + item["link"][47:] + " " + link[66:a_index+1])
         input_to.clear()
         input_to.send_keys(link)
-        time.sleep(450/1000)
+        time.sleep(750/1000)
         #get pattern
         html = driver.page_source
-        time.sleep(1)
         index = html.find("Paint Seed:")
         index += 15
         pattern = html[index:index+4].strip()
