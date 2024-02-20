@@ -1,0 +1,50 @@
+# Steam Market Pattern Searcher
+
+## About
+The Steam Market Pattern Searcher is a Python script designed to search for specified patterns of CS:GO items on the Steam Market. This tool aims to help users find items with specific patterns (e.g., skin patterns or rare decorations) more efficiently.
+
+## Installation
+
+### Clone the Repository
+
+First, clone the repository to your local machine using Git. If you don't have Git installed, you can download it from [git-scm.com](https://git-scm.com/).
+
+```bash
+git clone https://github.com/PSob888/SteamMarketPatternSearcher.git
+cd SteamMarketPatternSearcher
+```
+
+### Install Python and Selenium
+This script requires Python and Selenium. If you don't have Python installed, download it from python.org and follow the installation instructions for your operating system.
+
+After installing Python, you can install Selenium by running:
+
+```bash
+pip install selenium
+```
+
+Selenium requires a driver to interface with the chosen browser. Make sure you have the appropriate WebDriver for your browser installed (this project uses FireFox). For more information on Selenium drivers, visit the Selenium documentation.
+
+## Usage
+To use the script, navigate to the project directory and run item_maker.py with the required arguments: <item_name>, <steam_store_link>, and one or more <pattern_id> arguments.
+
+Example:
+
+```bash
+python item_maker.py "AK-47 | Redline (Field-Tested)" "https://steamcommunity.com/market/listings/730/AK-47%20|%20Redline%20(Field-Tested)" 101 102 103
+```
+### Arguments
+- **item_name:** The name of the CS:GO item you're searching for.
+- **steam_store_link:** The full URL to the item's page on the Steam Market.
+- **pattern_id:** One or more pattern IDs you want to search for. You can specify multiple pattern IDs by separating them with spaces.
+
+## details.txt File
+The **details.txt** file contains sensitive information and should be formatted as follows:
+1. **First Line:** Your email
+2. **Second Line:** password for your email
+3. **Third Line:** The email address you want to send notifications to.
+
+**Important:** Ensure that **details.txt** is stored securely and is not accessible to unauthorized users, as it contains sensitive information.
+
+## Disclaimer
+This tool is intended for personal use and educational purposes only. Respect Steam's terms of service when using this script. The developers of this script are not responsible for any potential consequences of using this tool.
