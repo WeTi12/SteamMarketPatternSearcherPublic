@@ -106,6 +106,8 @@ for item in data:
             pattern = ""
             patterns.append(pattern)
             del pattern
+        
+        driver.refresh()
 
     for i in range(0, len(inspect_links)):
         if patterns[i] in item["patterns"]:
