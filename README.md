@@ -17,10 +17,10 @@ cd SteamMarketPatternSearcher
 ### Install Python and Selenium
 This script requires Python and Selenium. If you don't have Python installed, download it from python.org and follow the installation instructions for your operating system.
 
-After installing Python, you can install Selenium by running:
+After installing Python, you can install all required dependencies by running this command:
 
 ```bash
-pip install selenium
+pip install -r requirements.txt
 ```
 
 Selenium requires a driver to interface with the chosen browser. Make sure you have the appropriate WebDriver for your browser installed (this project uses FireFox). For more information on Selenium drivers, visit the Selenium documentation.
@@ -46,12 +46,12 @@ The **details.txt** file contains sensitive information and should be formatted 
 
 **Important:** Ensure that **details.txt** is stored securely and is not accessible to unauthorized users, as it contains sensitive information.
 
-## program.py
-**program.py** is the main loop of the script, use it to run the script after you made the **item.txt** and **details.txt** files
+## loop.py
+**loop.py** is the main loop of the script, use it to run the script after you made the **item.txt** and **details.txt** files
 To use the script, navigate to the project directory and run program.py with the required arguments: <minutes>
 
 ```bash
-python program.py 5
+python loop.py 5
 ```
 ### Arguments
 - **minutes:** amount of minutes between each loop cycle.
@@ -65,7 +65,7 @@ to
 ```py
 completed_process = subprocess.run(['python3', script_name], check=True, text=True)
 ```
-in **program.py** file
+in **loop.py** file
 
 Useful links for starting the script on AWS EC2  instance with ubuntu
 
