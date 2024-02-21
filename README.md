@@ -57,15 +57,6 @@ python loop.py 5
 - **minutes:** amount of minutes between each loop cycle.
 
 ## Additional information
-If you plan to start the script on linux you must change line
-```py
-completed_process = subprocess.run(['python', script_name], check=True, text=True)
-```
-to
-```py
-completed_process = subprocess.run(['python3', script_name], check=True, text=True)
-```
-in **loop.py** file
 
 Useful links for starting the script on AWS EC2  instance with ubuntu
 
