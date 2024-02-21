@@ -1,9 +1,6 @@
-import time
 import json
-import smtplib
-import datetime
 import re
-from email.mime.text import MIMEText
+from message_sender import message_sender
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
@@ -11,16 +8,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
-
-def send_email(subject, body, sender, recipients, password):
-    msg = MIMEText(body)
-    msg['Subject'] = subject
-    msg['From'] = sender
-    msg['To'] = ', '.join(recipients)
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
-       smtp_server.login(sender, password)
-       smtp_server.sendmail(sender, recipients, msg.as_string())
-    print("Message sent!")
 
 #load item data from file
 print("scraping script started")
@@ -115,27 +102,7 @@ for item in data:
         if patterns[i] in item["patterns"]:
             #load email data from file
             print("Pattern found, sending message")
-            datenow = datetime.datetime.now()
-            email_data = ""
-            with open("details.txt") as f:
-                email_data = f.readlines()
-            message = "Item found: "
-            message += item["name"]
-            message += "\n"
-            message += "Date: "
-            message += datenow.strftime("%Y-%m-%d %H:%M:%S")
-            message += " "
-            message += item["link"]
-            message += "\npattern found: "
-            message += patterns[i]
-            message += "\nprice: "
-            message += prices[i]
-            message += "\nadditional info: "
-            message += listing_ids[i]
-            message += "\ninspect link: "
-            message += inspect_links[i]
-            title = "Item found " + item["name"] + " " + datenow.strftime("%Y-%m-%d %H:%M:%S")
-            send_email(title, message, email_data[0], email_data[2].split(","), email_data[1])
+            message_sender(item, patterns[i], prices[i], listing_ids[i], inspect_links[i])
             print(patterns[i], prices[i], listing_ids[i], item["link"], inspect_links[i])
             #remove item or patternfrom list and file if found
             if len(item["patterns"]) > 1:
