@@ -27,10 +27,9 @@ def scraping_script():
 
             for i in range(0, len(items_info["inspect_links"])):
                 if patterns[i] in item["patterns"]:
-                    #load email data from file
                     print("Pattern found, sending message")
-                    message_sender(item, patterns[i], items_info["price"][i], items_info["listing_ids"][i], items_info["inspect_links"][i])
-                    print(patterns[i], items_info["price"][i], items_info["listing_ids"][i], items_info["name"][i], items_info["inspect_links"][i])
+                    message_sender(item, patterns[i], items_info["prices"][i], items_info["listing_ids"][i], items_info["inspect_links"][i])
+                    print(patterns[i], items_info["prices"][i], items_info["listing_ids"][i], items_info["name"][i], items_info["inspect_links"][i])
                     #remove item or patternfrom list and file if found
                     if len(item["patterns"]) > 1:
                         item["patterns"].remove(patterns[i])
@@ -45,7 +44,8 @@ def scraping_script():
                     print("Item removed")
 
         print("----- Scraping script finished -----")
-    except:
+    except Exception as e:
+        print(e)
         print("----- Error running scraping script -----")
         return False
     
