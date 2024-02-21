@@ -20,7 +20,7 @@ print(f"Looping every {loop_minutes} minutes...")
 i = 0
 while True:
     print("\nLoop: " + str(i))
-    run_script('inspect_link_getter.py')
+    run_script('app_main.py')
     i += 1
     print("Script finished, waiting for " + str(loop_minutes) + " minutes...")
     time.sleep(loop_minutes * 60)
