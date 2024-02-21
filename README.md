@@ -48,6 +48,7 @@ The **details.txt** file contains sensitive information and should be formatted 
 
 ## loop.py
 **loop.py** is the main loop of the script, use it to run the script after you made the **item.txt** and **details.txt** files
+
 To use the script, navigate to the project directory and run program.py with the required arguments: <minutes>
 
 ```bash
