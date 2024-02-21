@@ -3,7 +3,7 @@ import requests
 import json
 
 
-def get_item_info(url):
+def get_items_info(url):
     print("----- Getting inspect links for: " + url[47:] + " -----")
 
     # use response to get html content with script tags

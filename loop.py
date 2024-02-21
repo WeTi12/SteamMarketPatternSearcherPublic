@@ -1,26 +1,19 @@
-import subprocess
 import sys
 import time
-
-def run_script(script_name):
-    try:
-        completed_process = subprocess.run(['python', script_name], check=True, text=True)
-        print(f"Script {script_name} finished with return code {completed_process.returncode}")
-        print(f"Output: {completed_process.stdout}")
-        print(f"Error: {completed_process.stderr}", file=sys.stderr)
-        del completed_process
-    except subprocess.CalledProcessError as e:
-        print(f"Error running {script_name}: {e}", file=sys.stderr)
+from app_main import scraping_script
 
 loop_minutes = 1
 if len(sys.argv) > 1:
     loop_minutes = int(sys.argv[1])
-print(f"Looping every {loop_minutes} minutes...")
+print(f"Looping every {loop_minutes} minutes")
 
-i = 0
+i = 1
 while True:
     print("\nLoop: " + str(i))
-    run_script('app_main.py')
+    finished = scraping_script()
+    if finished == True:
+        print("Script finished, waiting for " + str(loop_minutes) + " minutes")
+    else:
+        print("Error running script, waiting for " + str(loop_minutes) + " minutes")
     i += 1
-    print("Script finished, waiting for " + str(loop_minutes) + " minutes...")
     time.sleep(loop_minutes * 60)
