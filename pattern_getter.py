@@ -24,11 +24,12 @@ def get_pattern_info(items):
     driver = webdriver.Firefox(options)
 
     patterns = []
+    pattern = -1
     #getting patterns
     baseurl = "https://csfloat.com/checker"
     driver.get(baseurl)
     for link in items["inspect_links"]:
-        input_to = driver.find_element(By.ID, "mat-input-1")
+        input_to = driver.find_element(By.CLASS_NAME, "mat-mdc-input-element")
         a_index = link.find("A")
         print("Getting pattern of item: " + items["name"][0] + ", " + link[66:a_index+1])
         input_to.clear()
@@ -36,16 +37,18 @@ def get_pattern_info(items):
         input_to.send_keys(Keys.ENTER)
         #get pattern
         try:
-            details_div = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CLASS_NAME, "item-props")))
-            pattern = details_div.text[11:16]
-            pattern = re.sub("[^0-9]", "", pattern)
+            details_div = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CLASS_NAME, "table")))
+            pattern_element = details_div.find_element(By.CLASS_NAME, "value")
+            pattern = pattern_element.text
+            #pattern = details_div.text[11:16]
+            #pattern = re.sub("[^0-9]", "", pattern)
             del details_div
-            if len(pattern) == 0:
+            if pattern == -1:
                 print("Couldn't scrape item pattern, FloatDB error/slow internet issue")
             else:
                 print(pattern)
             patterns.append(pattern)
-            del pattern
+            pattern = -1
         except TimeoutException:
             print("Loading took too much time!")
             pattern = ""
@@ -57,6 +60,7 @@ def get_pattern_info(items):
 
     #close browser
     print("releasing memory")
+    del pattern
     driver.quit()
 
     return patterns
