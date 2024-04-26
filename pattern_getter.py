@@ -40,8 +40,6 @@ def get_pattern_info(items):
             details_div = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CLASS_NAME, "table")))
             pattern_element = details_div.find_element(By.CLASS_NAME, "value")
             pattern = pattern_element.text
-            #pattern = details_div.text[11:16]
-            #pattern = re.sub("[^0-9]", "", pattern)
             del details_div
             if pattern == -1:
                 print("Couldn't scrape item pattern, FloatDB error/slow internet issue")
@@ -50,10 +48,10 @@ def get_pattern_info(items):
             patterns.append(pattern)
             pattern = -1
         except TimeoutException:
-            print("Loading took too much time!")
+            print("Loading took too much time! --> This is most likely due to csfloat still processing this item")
             pattern = ""
             patterns.append(pattern)
-            del pattern
+            pattern = -1
         
         del input_to
         driver.refresh()
