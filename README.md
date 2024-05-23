@@ -10,7 +10,7 @@ The Steam Market Pattern Searcher is a Python script designed to search for spec
 First, clone the repository to your local machine using Git. If you don't have Git installed, you can download it from [git-scm.com](https://git-scm.com/).
 
 ```bash
-git clone https://github.com/PSob888/SteamMarketPatternSearcher.git
+git clone https://github.com/PSob888/SteamMarketPatternSearcherPublic.git
 cd SteamMarketPatternSearcher
 ```
 
