@@ -11,7 +11,7 @@ First, clone the repository to your local machine using Git. If you don't have G
 
 ```bash
 git clone https://github.com/PSob888/SteamMarketPatternSearcherPublic.git
-cd SteamMarketPatternSearcher
+cd SteamMarketPatternSearcherPublic
 ```
 
 ### Install Python and Selenium
