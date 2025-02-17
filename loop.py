@@ -3,14 +3,18 @@ import time
 from app_main import scraping_script
 
 loop_minutes = 1
+pattern_method = "new"
+
 if len(sys.argv) > 1:
     loop_minutes = int(sys.argv[1])
-print(f"Looping every {loop_minutes} minutes")
+    if len(sys.argv) > 2:
+        pattern_method = sys.argv[2]
+print(f"Looping every {loop_minutes} minutes with pattern method: {pattern_method}")
 
 i = 1
 while True:
     print("\nLoop: " + str(i))
-    finished = scraping_script()
+    finished = scraping_script(pattern_method)
     if finished == True:
         print("Script finished, waiting for " + str(loop_minutes) + " minutes")
     else:

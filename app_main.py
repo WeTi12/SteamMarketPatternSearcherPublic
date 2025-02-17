@@ -1,10 +1,11 @@
 import json
 from message_sender import message_sender
 from items_info_getter import get_items_info
-from pattern_getter import get_pattern_info
+from pattern_getter_old import get_pattern_info_old
+from pattern_getter_new import get_pattern_info_new
 
 
-def scraping_script():
+def scraping_script(method):
     #load item data from file
     try:
         print("scraping script started")
@@ -23,7 +24,10 @@ def scraping_script():
             items_info = None
             patterns = None
             items_info = get_items_info(baseurl)
-            patterns = get_pattern_info(items_info)
+            if(method == "new"):
+                patterns = get_pattern_info_new(items_info)
+            else:
+                patterns = get_pattern_info_old(items_info)
 
             for i in range(0, len(items_info["inspect_links"])):
                 if patterns[i] in item["patterns"]:

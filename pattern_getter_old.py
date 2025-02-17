@@ -1,4 +1,3 @@
-import re
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
@@ -8,7 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
 
-def get_pattern_info(items):
+def get_pattern_info_old(items):
     print("----- Scraping patterns -----")
     #open browser
     options = Options() 
