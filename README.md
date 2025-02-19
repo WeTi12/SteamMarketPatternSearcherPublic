@@ -83,3 +83,6 @@ https://linuxize.com/post/how-to-use-linux-screen/
 
 ## Disclaimer
 This tool is intended for personal use and educational purposes only. Respect Steam's terms of service when using this script. The developers of this script are not responsible for any potential consequences of using this tool.
+
+## TODO
+- Create new pattern getter method based on pattern_getter_old, but one that doesn't focus mostly on lowering the RAM usage of the script.
