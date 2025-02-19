@@ -3,12 +3,14 @@ import time
 from app_main import scraping_script
 
 loop_minutes = 1
-pattern_method = "new"
+pattern_method = "old"
 
-if len(sys.argv) > 1:
-    loop_minutes = int(sys.argv[1])
-    if len(sys.argv) > 2:
-        pattern_method = sys.argv[2]
+for arg in sys.argv[1:]:
+    if arg.isdigit():
+        loop_minutes = int(arg)
+    elif arg in ["old", "new"]:
+        pattern_method = arg
+
 print(f"Looping every {loop_minutes} minutes with pattern method: {pattern_method}")
 
 i = 1

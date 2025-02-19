@@ -2,6 +2,8 @@ from bs4 import BeautifulSoup
 import requests
 import json
 
+JSON_END_OFFSET = 3
+
 
 def get_items_info(url):
     print("----- Getting inspect links for: " + url[47:] + " -----")
@@ -18,7 +20,7 @@ def get_items_info(url):
 
     # find item info and parse it
     start_index = text.find("var g_rgAssets = ") + len("var g_rgAssets = ")
-    end_index = text.find("var g_rgCurrency") - 4
+    end_index = text.find("var g_rgCurrency") - JSON_END_OFFSET
     json_string = text[start_index:end_index]
     data = json.loads(json_string)
 

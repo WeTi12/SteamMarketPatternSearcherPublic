@@ -49,13 +49,23 @@ The **details.txt** file contains sensitive information and should be formatted 
 ## loop.py
 **loop.py** is the main loop of the script, use it to run the script after you made the **item.txt** and **details.txt** files
 
-To use the script, navigate to the project directory and run program.py with the required arguments: <minutes>
+To use the script, navigate to the project directory and run loop.py with the required arguments: [minutes] [method_type]
 
 ```bash
-python loop.py 5
+python loop.py 5 old
 ```
 ### Arguments
-- **minutes:** amount of minutes between each loop cycle.
+- **minutes:** amount of minutes between each loop cycle. **If not specified it defaults to 1.**
+- **method_type:** method that is used to get float from csfloat (possible options: old, new). As of 19.02.2025 new method doesn't work :(. **If not specified it defaults to old.**
+
+arguments can be used interchangeably, you can type either:
+```bash
+python loop.py 5 old
+```
+or
+```bash
+python loop.py old 5
+```
 
 ## Additional information
 
