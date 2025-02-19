@@ -18,7 +18,6 @@ def get_pattern_info_old(items):
     options.add_argument('-no-sandbox')
     options.add_argument('-disable-gpu')
     options.add_argument("-disable-dev-shm-usage")
-    options.page_load_strategy = 'eager'
     options.set_preference("permissions.default.image", 2)
     driver = webdriver.Firefox(options)
 
