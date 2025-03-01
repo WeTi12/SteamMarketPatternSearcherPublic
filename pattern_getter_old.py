@@ -9,6 +9,7 @@ from selenium.common.exceptions import TimeoutException
 
 def get_pattern_info_old(items):
     print("----- Scraping patterns -----")
+    print("Setting up driver")
     #open browser
     options = Options() 
     options.add_argument("-headless")
